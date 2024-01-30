@@ -1,0 +1,65 @@
+version: "3.1"
+services:
+  php:
+    build:
+      context: ./
+      dockerfile: .docker/Dockerfile.php
+    ports:
+      - 9000:9000
+    volumes:
+      - ./:/public_html:rw
+      - ./.docker/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
+    networks:
+      - sidk
+    depends_on:
+      - mysql
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./:/public_html:rw
+      - ./.docker/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - sidk
+    depends_on:
+      - php
+  mysql:
+    image: "mysql/mysql-server:5.7"
+    restart: always
+    ports:
+        - "3306:3306"
+    environment:
+        MYSQL_ROOT_HOST: "%"
+        MYSQL_ROOT_PASSWORD: sidk
+        MYSQL_DATABASE: sidk
+        MYSQL_USER: sidk
+        MYSQL_PASSWORD: sidk
+        MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - sidk
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: mysql
+      PMA_PORTS: 3306
+      UPLOAD_LIMIT: 100M
+      HIDE_PHP_VERSION: 1
+    networks:
+      - sidk
+    volumes:
+      - phpmyadmin:/sessions
+networks:
+  sidk:
+    driver: bridge
+volumes:
+  mysql:
+    driver: local
+  phpmyadmin:
+    driver: local

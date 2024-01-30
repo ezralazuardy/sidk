@@ -1,13 +1,13 @@
 <?php return array(
     'root' => array(
         'name' => 'opendesa/opensid',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => 'f29cffe422e155585ef31800389c966d374fff8e',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '41e020bd1d2aefa752b696cb3393e728cbafe08d',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'dev' => false,
+        'dev' => true,
     ),
     'versions' => array(
         'agungsugiarto/codeigniter-datables' => array(
@@ -244,6 +244,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'mikey179/vfsstream' => array(
+            'pretty_version' => 'v1.1.0',
+            'version' => '1.1.0.0',
+            'reference' => 'fc0fe8f4d0b527254a2dc45f0c265567c881d07e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mikey179/vfsstream',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
         'monolog/monolog' => array(
             'pretty_version' => '2.9.2',
             'version' => '2.9.2.0',
@@ -263,9 +272,9 @@
             'dev_requirement' => false,
         ),
         'opendesa/opensid' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => 'f29cffe422e155585ef31800389c966d374fff8e',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '41e020bd1d2aefa752b696cb3393e728cbafe08d',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
